@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canada Immigration KB</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var urls = ["kb_part-1.json", "kb_part-2.json", "kb_part-3.json"];
+            var text = "Knowledge Base";
+            
+            $.each(urls, function(index, url) {
+                $.getJSON(url, function(data) {
+                    var output = "";
+                    $.each(data, function(key, value) {
+                        output += "<h2>" + value.url + "</h2>";
+                        output += "<p>" + value.text + "</p>";
+                    });
+                    $("#knowledgeBase").append(output);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>IRCC Knowledge Base</h1>
+<p>Last Update: 2024-08-13 <span id="lastUpdate"></span></p>
+    <div id="knowledgeBase"></div>
+</body>
+</html>
